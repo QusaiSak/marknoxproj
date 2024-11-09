@@ -8,7 +8,7 @@ const Header = () => {
     <div className="sticky top-0 z-40 w-full">
       <div className="container flex py-2 items-center justify-between px-6 md:px-8">
         {/* Brand Name */}
-        <Link href="#home" className="text-2xl font-bold">MarkNox Portfolio</Link>
+        <Link href="#home" className="text-2xl font-bold">MyPortfolio</Link>
 
         {/* Desktop Navbar (hidden on smaller screens) */}
         <div className="hidden md:flex">
