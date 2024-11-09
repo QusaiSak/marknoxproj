@@ -38,10 +38,10 @@ export default function Component() {
     setLoading(true);
     try {
       await emailjs.sendForm(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        "service_4i67e1a",
+        "template_tc6ownb",
         formRef.current,
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!,
+        "9Xj681RTOuWODwp-Z",
       );
 
       toast({
