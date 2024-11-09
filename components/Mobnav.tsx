@@ -2,6 +2,7 @@
 import { Menu } from "lucide-react";
 import Link from "next/link";
 import React from "react";
+import { ModeToggle } from "./ModeToggle";
 import { Button } from "./ui/button";
 import {
   Sheet,
@@ -62,6 +63,7 @@ const Mobnav = () => {
               </Link>
             ))}
           </nav>
+          <ModeToggle />
         </SheetContent>
       </Sheet>
     </div>
