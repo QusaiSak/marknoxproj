@@ -39,8 +39,8 @@ export default function Component() {
 
     if (formRef.current) {
       emailjs
-        .sendForm("service_4i67e1a", "template_uc25zoj", formRef.current, {
-          publicKey: "9Xj681RTOuWODwp-Z",
+        .sendForm("service_scu8zo9", "template_k4ijezd", formRef.current, {
+          publicKey: "PdQUArI41biyIIiqv",
         })
         .then(
           () => {
