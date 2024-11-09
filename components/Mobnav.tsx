@@ -46,7 +46,7 @@ const Mobnav = () => {
           <SheetHeader>
             <SheetTitle>
               <Link href="#home" className="flex items-center space-x-2">
-                <span className="text-2xl font-bold">MarkNox Portfolio</span>
+                <span className="text-2xl font-bold">MyPortfolio</span>
               </Link>
             </SheetTitle>
           </SheetHeader>
