@@ -7,7 +7,6 @@ import { ModeToggle } from "./ModeToggle";
 import {
   NavigationMenu,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "./ui/navigation-menu";
@@ -20,7 +19,7 @@ interface NavigationItem {
 const Navigation: NavigationItem[] = [
   { path: "#home", label: "Home" },
   { path: "#about", label: "About" },
-  { path: "#project" , label: "Project"},
+  { path: "#project", label: "Project" },
   { path: "#contact", label: "Contact" },
 ];
 
@@ -46,7 +45,7 @@ const Navbar = () => {
         ))}
       </NavigationMenuList>
       <div className="h-6 p-2 border-r-2 dark:border-white border-black" />
-      <ModeToggle/>
+      <ModeToggle />
     </NavigationMenu>
   );
 };

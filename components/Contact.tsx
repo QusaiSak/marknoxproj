@@ -32,7 +32,7 @@ export default function Component() {
     },
   });
 
-  const onSubmit = async (data: FormValues) => {
+  const onSubmit = async () => {
     if (!formRef.current) return;
 
     setLoading(true);
@@ -51,10 +51,14 @@ export default function Component() {
 
       // Reset form
       form.reset();
-    } catch (error) {
+    } catch (error: unknown) {
+      const errorMessage =
+        error instanceof Error
+          ? error.message
+          : "Failed to send the message. Please try again later.";
       toast({
         title: "Error",
-        description: "Something went wrong. Please try again.",
+        description: errorMessage,
         variant: "destructive",
       });
     } finally {
@@ -119,7 +123,7 @@ export default function Component() {
             </Button>
           </div>
         </form>
-        <div  className="border-b-4 w-full h-2"/>
+        <div className="border-b-4 w-full h-2" />
         <p className="text-center text-sm ">
           Or send me a direct email at{" "}
           <a href="mailto:qusaisakerwala@gmail.com" className="underline">

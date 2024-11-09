@@ -11,7 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { ExternalLink, Github } from "lucide-react";
+import {  Github } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import proj1 from "../public/Image/proj1.png";
@@ -95,17 +95,6 @@ export default function Projects() {
                     GitHub
                   </Link>
                 </Button>
-                {project.liveLink && (
-                  <Button variant="outline" asChild>
-                    <Link
-                      href={project.liveLink}
-                      target="_blank"
-                      rel="noopener noreferrer">
-                      <ExternalLink className="mr-2 h-4 w-4" />
-                      Live Demo
-                    </Link>
-                  </Button>
-                )}
               </CardFooter>
             </Card>
           </motion.div>
