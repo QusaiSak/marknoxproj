@@ -32,36 +32,45 @@ export default function Component() {
     },
   });
 
-  const onSubmit = async () => {
-    if (!formRef.current) return;
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
 
     setLoading(true);
-    try {
-      await emailjs.sendForm(
-        "service_4i67e1a",
-        "template_tc6ownb",
-        formRef.current,
-        "9Xj681RTOuWODwp-Z",
-      );
 
-      toast({
-        title: "Message sent",
-        description: "Thank you for your message. We'll get back to you soon.",
-      });
-
-      // Reset form
-      form.reset();
-    } catch (error: unknown) {
-      const errorMessage =
-        error instanceof Error
-          ? error.message
-          : "Failed to send the message. Please try again later.";
+    if (formRef.current) {
+      emailjs
+        .sendForm("service_4i67e1a", "template_tc6ownb", formRef.current, {
+          publicKey: "9Xj681RTOuWODwp-Z",
+        })
+        .then(
+          () => {
+            toast({
+              title: "Message sent",
+              description:
+                "Thank you for your message. We'll get back to you soon.",
+            });
+            setLoading(false);
+            form.reset();
+          },
+          (error) => {
+            const errorMessage =
+              error instanceof Error
+                ? error.message
+                : "Failed to send the message. Please try again later.";
+            toast({
+              title: "Error",
+              description: errorMessage,
+              variant: "destructive",
+            });
+            setLoading(false);
+          },
+        );
+    } else {
       toast({
         title: "Error",
-        description: errorMessage,
+        description: "Form submission failed. Please try again later.",
         variant: "destructive",
       });
-    } finally {
       setLoading(false);
     }
   };
@@ -71,10 +80,7 @@ export default function Component() {
       <div className="w-full max-w-xl space-y-8">
         <h1 className="text-3xl font-bold text-center mb-12">Contact Me</h1>
 
-        <form
-          ref={formRef}
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-6">
+        <form ref={formRef} onSubmit={onSubmit} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <Input
