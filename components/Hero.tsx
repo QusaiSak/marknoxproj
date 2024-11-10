@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { ArrowRight} from "lucide-react";
+import { ArrowRight, FileText } from "lucide-react";
 import Link from "next/link";
 
 export default function Hero() {
@@ -13,7 +13,7 @@ export default function Hero() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}>
-        Hi, I{"'"}m <span>Qusai Sakerwala</span>
+        Hi, I{"'"}m <span className="text-primary">Qusai Sakerwala</span>
       </motion.h1>
       <motion.p
         className="text-xl mb-8 max-w-2xl"
@@ -24,13 +24,20 @@ export default function Hero() {
         experiences.
       </motion.p>
       <motion.div
+        className="flex flex-col sm:flex-row gap-4"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.4 }}>
-        <Link href="#project">
+        <Link href="#projects">
           <Button size="lg" className="group">
             View My Work
             <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </Button>
+        </Link>
+        <Link href="/Resume.pdf" target="_blank" rel="noopener noreferrer">
+          <Button size="lg" variant="outline" className="group">
+            View Resume
+            <FileText className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Button>
         </Link>
       </motion.div>

@@ -11,7 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import {  Github } from "lucide-react";
+import { Github } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import proj1 from "../public/Image/proj1.png";
