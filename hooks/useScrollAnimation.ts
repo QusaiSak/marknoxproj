@@ -1,11 +1,10 @@
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 
-export const useScrollAnimation = (threshold = 0.1) => {
+export const useScrollAnimation = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, {
-    once: false,
-    threshold,
+    once: false, // This option determines whether the animation runs only once.
   });
 
   const variants = {
@@ -29,4 +28,4 @@ export const useScrollAnimation = (threshold = 0.1) => {
   };
 
   return { ref, isInView, variants };
-}; 
+};
