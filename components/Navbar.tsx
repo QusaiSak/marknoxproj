@@ -2,13 +2,11 @@
 
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { ModeToggle } from "./ModeToggle";
+
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuList,
-  navigationMenuTriggerStyle,
 } from "./ui/navigation-menu";
 
 interface NavigationItem {
@@ -24,28 +22,27 @@ const Navigation: NavigationItem[] = [
 ];
 
 const Navbar = () => {
-  const pathname = usePathname();
 
   return (
-    <NavigationMenu>
-      <NavigationMenuList>
+    <NavigationMenu className="px-4">
+      <NavigationMenuList className="space-x-2">
         {Navigation.map((item) => (
           <NavigationMenuItem key={item.label}>
-            <Link href={item.path} legacyBehavior passHref>
-              <div
-                className={cn(
-                  navigationMenuTriggerStyle(),
-                  pathname === item.path &&
-                    "border-b dark:border-white border-black",
-                )}>
-                {item.label}
-              </div>
+            <Link 
+              href={item.path} 
+              className={cn(
+                "px-4 py-2 text-sm font-medium rounded-md transition-all",
+                "hover:bg-primary/10 hover:text-primary",
+                "focus:outline-none focus:ring-2 focus:ring-primary/50",
+                "relative group"
+              )}
+            >
+              {item.label}
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
             </Link>
           </NavigationMenuItem>
         ))}
       </NavigationMenuList>
-      <div className="h-6 p-2 border-r-2 dark:border-white border-black" />
-      <ModeToggle />
     </NavigationMenu>
   );
 };

@@ -10,6 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { motion } from "framer-motion";
 import { Github } from "lucide-react";
 import Image from "next/image";
@@ -54,52 +55,71 @@ const projects = [
 ];
 
 export default function Projects() {
+  const { ref, isInView, variants } = useScrollAnimation();
+
   return (
-    <section className="py-16 px-4 min-h-screen">
-      <h2 className="text-3xl font-bold text-center mb-12">My Projects</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {projects.map((project, index) => (
-          <motion.div
-            key={project.title}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}>
-            <Card className="overflow-hidden h-full flex flex-col">
-              <div className="relative w-full">
-                <Image
-                  src={project.img}
-                  alt={project.title}
-                  objectFit="cover"
-                />
-              </div>
-              <CardHeader>
-                <CardTitle>{project.title}</CardTitle>
-                <CardDescription>{project.description}</CardDescription>
-              </CardHeader>
-              <CardContent className="flex-grow">
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.map((tech) => (
-                    <Badge key={tech} variant="secondary">
-                      {tech}
-                    </Badge>
-                  ))}
+    <section className="py-16 min-h-[100dvh] px-4">
+      <motion.div
+        ref={ref}
+        variants={variants}
+        initial="hidden"
+        animate={isInView ? "visible" : "exit"}
+        className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-3xl font-bold text-center mb-12 text-glow">
+          My Projects
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {projects.map((project, index) => (
+            <motion.div
+              key={project.title}
+              variants={variants}
+              transition={{ delay: index * 0.1 }}>
+              <Card className="overflow-hidden h-full flex flex-col cyber-border">
+                <div className="relative w-full h-[300px]">
+                  <Image
+                    src={project.img}
+                    alt={project.title}
+                    fill
+                    className="object-cover"
+                  />
                 </div>
-              </CardContent>
-              <CardFooter className="flex justify-between">
-                <Button variant="outline" asChild>
-                  <Link
-                    href={project.githubLink}
-                    target="_blank"
-                    rel="noopener noreferrer">
-                    <Github className="mr-2 h-4 w-4" />
-                    GitHub
-                  </Link>
-                </Button>
-              </CardFooter>
-            </Card>
-          </motion.div>
-        ))}
-      </div>
+                <CardHeader className="space-y-4">
+                  <CardTitle className="text-3xl text-glow">
+                    {project.title}
+                  </CardTitle>
+                  <CardDescription className="text-base">
+                    {project.description}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="flex-grow">
+                  <div className="flex flex-wrap gap-3 mb-4">
+                    {project.technologies.map((tech) => (
+                      <Badge
+                        key={tech}
+                        variant="secondary"
+                        className="px-4 py-1 text-sm">
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
+                </CardContent>
+                <CardFooter className="flex justify-between">
+                  <Button variant="outline" size="lg" asChild>
+                    <Link
+                      href={project.githubLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full">
+                      <Github className="mr-2 h-5 w-5" />
+                      View on GitHub
+                    </Link>
+                  </Button>
+                </CardFooter>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
     </section>
   );
 }

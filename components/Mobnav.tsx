@@ -2,8 +2,8 @@
 import { Menu } from "lucide-react";
 import Link from "next/link";
 import React from "react";
-import { ModeToggle } from "./ModeToggle";
 import { Button } from "./ui/button";
+import { Logo } from "./ui/Logo";
 import {
   Sheet,
   SheetContent,
@@ -12,14 +12,7 @@ import {
   SheetTrigger,
 } from "./ui/sheet";
 
-// Define the structure of navigation items.
-interface NavigationItem {
-  path: string;
-  label: string;
-}
-
-// Example navigation items.
-const Navigation: NavigationItem[] = [
+const Navigation = [
   { path: "#home", label: "Home" },
   { path: "#about", label: "About" },
   { path: "#project", label: "Project" },
@@ -28,45 +21,41 @@ const Navigation: NavigationItem[] = [
 
 const Mobnav = () => {
   return (
-    <div>
-      {/* Mobile Navigation Sheet */}
-      <Sheet>
-        {/* Button to trigger opening of the sheet */}
-        <SheetTrigger asChild>
-          <Button
-            variant="outline"
-            size="icon"
-            className="absolute right-4 top-4 z-10 md:hidden">
-            <Menu className="h-6 w-6" />
-            <span className="sr-only">Open menu</span>
-          </Button>
-        </SheetTrigger>
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button
+          variant="ghost"
+          size="icon"
+          className="relative group p-2 hover:bg-primary/10">
+          <Menu className="h-6 w-6 transition-transform group-hover:scale-110" />
+        </Button>
+      </SheetTrigger>
 
-        {/* Sheet content (side menu) */}
-        <SheetContent side="right">
-          <SheetHeader>
-            <SheetTitle>
-              <Link href="#home" className="flex items-center space-x-2">
-                <span className="text-2xl font-bold">MyPortfolio</span>
-              </Link>
-            </SheetTitle>
-          </SheetHeader>
+      <SheetContent
+        side="right"
+        className="w-[300px] sm:w-[400px] border-l border-primary/20 backdrop-blur-lg">
+        <SheetHeader className="border-b border-primary/20 pb-4">
+          <SheetTitle>
+            <Logo imageSize={32} className="justify-center" />
+          </SheetTitle>
+        </SheetHeader>
 
-          {/* Navigation Links */}
-          <nav className="mt-6 space-y-2">
-            {Navigation.map((item) => (
-              <Link
-                key={item.label}
-                href={item.path}
-                className="flex items-center px-3 py-2 text-sm font-medium">
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-          <ModeToggle />
-        </SheetContent>
-      </Sheet>
-    </div>
+        <nav className="mt-8">
+          {Navigation.map((item) => (
+            <Link
+              key={item.label}
+              href={item.path}
+              className="flex items-center px-4 py-3 text-lg font-medium transition-all
+                         hover:bg-primary/10 hover:text-primary rounded-md
+                         focus:outline-none focus:ring-2 focus:ring-primary/50
+                         group relative">
+              <span className="relative z-10">{item.label}</span>
+              <span className="absolute inset-0 bg-primary/5 rounded-md scale-0 group-hover:scale-100 transition-transform duration-300" />
+            </Link>
+          ))}
+        </nav>
+      </SheetContent>
+    </Sheet>
   );
 };
 
