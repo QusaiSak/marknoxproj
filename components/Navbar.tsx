@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import {
   NavigationMenu,
@@ -22,23 +23,15 @@ const Navigation: NavigationItem[] = [
 ];
 
 const Navbar = () => {
-
   return (
     <NavigationMenu className="px-4">
       <NavigationMenuList className="space-x-2">
         {Navigation.map((item) => (
           <NavigationMenuItem key={item.label}>
-            <Link 
-              href={item.path} 
-              className={cn(
-                "px-4 py-2 text-sm font-medium rounded-md transition-all",
-                "hover:bg-primary/10 hover:text-primary",
-                "focus:outline-none focus:ring-2 focus:ring-primary/50",
-                "relative group"
-              )}
-            >
+            <Link
+              href={item.path}
+              className="px-4 py-2 text-sm font-medium rounded-md transition-all hover:bg-primary/10 hover:text-primary">
               {item.label}
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
             </Link>
           </NavigationMenuItem>
         ))}
