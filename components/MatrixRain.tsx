@@ -27,7 +27,7 @@ export default function MatrixRain() {
       ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      ctx.fillStyle = "#00ff9580";
+      ctx.fillStyle = "#00ff95f3";
       ctx.font = `${fontSize}px monospace`;
 
       drops.forEach((drop, i) => {
