@@ -1,7 +1,6 @@
 import Footer from "@/components/Footor";
 import Header from "@/components/Header";
 import MatrixRain from "@/components/MatrixRain";
-import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
