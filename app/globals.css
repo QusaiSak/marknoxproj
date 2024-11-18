@@ -63,7 +63,7 @@
 
   /* Matrix-like text glow effect */
   .text-glow {
-    text-shadow: 0 0 10px hsl(var(--primary));
+    text-shadow: 0 0 4px hsl(var(--primary));
   }
 
   /* Cyberpunk border effect */
