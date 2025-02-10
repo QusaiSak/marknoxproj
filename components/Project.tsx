@@ -15,14 +15,12 @@ import { motion } from "framer-motion";
 import { Github } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import proj1 from "../public/Image/proj1.png";
-import proj2 from "../public/Image/proj2.png";
-import proj3 from "../public/Image/proj3.png";
+
 
 const projects = [
   {
     title: "Vision Capital",
-    img: proj1,
+    img: "Image/proj1.png",
     description:
       "A finance tracking web app built with the MERN stack. Users can easily log expenses and income, and view a dynamic dashboard with insightful financial data.",
     technologies: [
@@ -37,7 +35,7 @@ const projects = [
   },
   {
     title: "Coin Search",
-    img: proj2,
+    img: "Image/proj2.png",
     description:
       "Coin Search is a sleek web app built with React and Vite that lets users search real-time cryptocurrency data. It enhanced my skills in API integration and handling asynchronous data, with a clean, responsive UI designed in Plain CSS.",
     technologies: ["React", "Vite", "Plain CSS"],
@@ -45,7 +43,7 @@ const projects = [
   },
   {
     title: "Kairos",
-    img: proj3,
+    img: "Image/proj3.png",
     description:
       "Kairos is a Greek-themed weather app developed by my team for a frontend hackathon, where we achieved third place. I served as the lead developer for this project.",
     technologies: ["React", "Vite", "Tailwind CSS", "Shadcn"],
@@ -58,7 +56,7 @@ export default function Projects() {
   const { ref, isInView, variants } = useScrollAnimation();
 
   return (
-    <section className="py-16 min-h-[100dvh] px-4">
+    <section className="py-16 min-h-[100dvh] px-4 ">
       <motion.div
         ref={ref}
         variants={variants}
@@ -104,7 +102,7 @@ export default function Projects() {
                   </div>
                 </CardContent>
                 <CardFooter className="flex justify-between">
-                  <Button variant="outline" size="lg" asChild>
+                  <Button variant="outline" size="lg" asChild className="z-10">
                     <Link
                       href={project.githubLink}
                       target="_blank"
